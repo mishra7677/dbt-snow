@@ -22,8 +22,15 @@ models:
 
 sources:
   - name: sample_data
-    database: SNOWFLAKE_SAMPLE_DATA  # Source database
-    schema: TPCH_SF1  # Source schema
+    database: TPCH_SF1NOWFLAKE_SAMPLE_DATA  # Source database
+    schema: TPCH_SF1000  # Source schema
     tables:
       - name: CUSTOMER
       - name: ORDERS
+      - name: LINEITEMS
+      - name: NATION
+      - name: PARTS
+      - name: PARTSUPP
+      - name: REGION
+      - name: SUPPLIER
+      

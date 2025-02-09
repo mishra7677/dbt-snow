@@ -21,7 +21,7 @@ models:
                 - not_null
 
 sources:
-  - name: sample_data
+  - name: landing
     database: TPCH_SF1NOWFLAKE_SAMPLE_DATA  # Source database
     schema: TPCH_SF1000  # Source schema
     tables:

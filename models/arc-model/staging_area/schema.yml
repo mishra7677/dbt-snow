@@ -22,13 +22,12 @@ models:
 
 sources:
   - name: landing
-
     database: SNOWFLAKE_SAMPLE_DATA  # Source database
     schema: TPCH_SF1000  # Source schema
     tables:
       - name: CUSTOMER
       - name: ORDERS
-      - name: LINEITEMS
+      - name: LINEITEM
       - name: NATION
       - name: PARTS
       - name: PARTSUPP

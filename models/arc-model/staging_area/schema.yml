@@ -22,6 +22,7 @@ models:
 
 sources:
   - name: landing
+
     database: SNOWFLAKE_SAMPLE_DATA  # Source database
     schema: TPCH_SF1000  # Source schema
     tables:

@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: fact_orders
+  - name: fact_order
     columns:
       - name: order_id
         description: "Primary key for orders"
@@ -30,7 +30,7 @@ models:
       - name: revenue
         description: "Revenue for this line item"
 
-  - name: dim_customers
+  - name: dim_customer
     description: "Dimension table for customer details"
     columns:
       - name: customer_id
@@ -41,7 +41,7 @@ models:
       - name: customer_name
         description: "Name of the customer"
 
-  - name: dim_parts
+  - name: dim_part
     description: "Dimension table for part details"
     columns:
       - name: part_id

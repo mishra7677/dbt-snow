@@ -1,4 +1,5 @@
 version: 2
+
 models:
   - name: fact_orders
     columns:
@@ -9,11 +10,64 @@ models:
           - not_null
       - name: customer_id
         description: "Foreign key to customers"
-      - name: order_date
-        description: "Date when order was placed"
       - name: total_revenue
         description: "Total revenue for this order"
       - name: total_quantity
         description: "Total quantity of items in this order"
-      - name: total_items
-        description: "Number of line items in this order"
+
+  - name: fact_lineitems
+    description: "Fact table for line item-level details"
+    columns:
+      - name: lineitem_id
+        description: "Primary key for line items"
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: "Foreign key to orders"
+      - name: part_id
+        description: "Foreign key to parts"
+      - name: revenue
+        description: "Revenue for this line item"
+
+  - name: dim_customers
+    description: "Dimension table for customer details"
+    columns:
+      - name: customer_id
+        description: "Primary key for customers"
+        tests:
+          - unique
+          - not_null
+      - name: customer_name
+        description: "Name of the customer"
+
+  - name: dim_parts
+    description: "Dimension table for part details"
+    columns:
+      - name: part_id
+        description: "Primary key for parts"
+        tests:
+          - unique
+          - not_null
+      - name: part_name
+        description: "Name of the part"
+
+  - name: dim_nation
+    description: "Dimension table for nation details"
+    columns:
+      - name: nation_id
+        description: "Primary key for nations"
+        tests:
+          - unique
+          - not_null
+      - name: region_id
+        description: "Foreign key to region"
+
+  - name: dim_region
+    description: "Dimension table for region details"
+    columns:
+      - name: region_id
+        description: "Primary key for regions"
+        tests:
+          - unique
+          - not_null

@@ -1,0 +1,19 @@
+version: 2
+models:
+  - name: fact_orders
+    columns:
+      - name: order_id
+        description: "Primary key for orders"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Foreign key to customers"
+      - name: order_date
+        description: "Date when order was placed"
+      - name: total_revenue
+        description: "Total revenue for this order"
+      - name: total_quantity
+        description: "Total quantity of items in this order"
+      - name: total_items
+        description: "Number of line items in this order"

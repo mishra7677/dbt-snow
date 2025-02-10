@@ -1,7 +1,7 @@
 {{config(
-    materialized='incremental',
+    materialized='ephemeral',
     unique_key='nation_id',
-    incremental_strategy= 'merge'
+    
 )}}
 
     SELECT 
@@ -13,5 +13,5 @@
     FROM {{source('landing', 'NATION')}} n
 
 {% if is_incremental() %}
-WHERE p.n_nationkey NOT IN (SELECT nation_id FROM {{ this }})
+WHERE n.n_nationkey NOT IN (SELECT nation_id FROM {{ this }})
 {% endif %}

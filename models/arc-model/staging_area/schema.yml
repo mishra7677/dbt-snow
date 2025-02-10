@@ -1,24 +1,74 @@
-
 version: 2
 
 models:
-    - name: my_first_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+  - name: stg_orders
+    description: "Staging table for orders with cleaned and transformed data"
+    columns:
+      - name: order_id
+        description: "Primary key for orders"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Foreign key to customers"
+        tests:
+          - not_null
+      - name: order_date
+        description: "Date when order was placed"
+      - name: total_price
+        description: "Total price of the order"
 
-    - name: my_second_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+  - name: stg_customers
+    description: "Staging table for customers"
+    columns:
+      - name: customer_id
+        description: "Primary key for customers"
+        tests:
+          - unique
+          - not_null
+      - name: customer_name
+        description: "Customer's full name"
+      - name: nation_id
+        description: "Foreign key to nation"
+
+  - name: stg_lineitems
+    description: "Staging table for line items with unique lineitem_id"
+    columns:
+      - name: lineitem_id
+        description: "Unique identifier for each line item"
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: "Foreign key to orders"
+      - name: part_id
+        description: "Foreign key to parts"
+      - name: quantity
+        description: "Quantity of the part ordered"
+      - name: revenue
+        description: "Revenue generated from this line item"
+
+  - name: stg_nation
+    description: "Staging table for nations"
+    columns:
+      - name: nation_id
+        description: "Primary key for nation"
+        tests:
+          - unique
+          - not_null
+      - name: nation_name
+        description: "Name of the nation"
+
+  - name: stg_region
+    description: "Staging table for regions"
+    columns:
+      - name: region_id
+        description: "Primary key for region"
+        tests:
+          - unique
+          - not_null
+      - name: region_name
+        description: "Name of the region"
 
 sources:
   - name: landing
@@ -29,8 +79,7 @@ sources:
       - name: ORDERS
       - name: LINEITEM
       - name: NATION
-      - name: PARTS
+      - name: PART
       - name: PARTSUPP
       - name: REGION
       - name: SUPPLIER
-      

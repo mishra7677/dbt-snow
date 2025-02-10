@@ -10,7 +10,7 @@ SELECT
     o.order_date,
     o.order_priority,
     o.ship_priority
-FROM {{ ref('stg_orders') }} o
+FROM {{ ref('st_order') }} o
 
 {% if is_incremental() %}
 WHERE o.order_date > (SELECT MAX(order_date) FROM {{ this }})

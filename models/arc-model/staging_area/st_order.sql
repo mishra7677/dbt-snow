@@ -1,7 +1,7 @@
 {{ config(
-    materialized='incremental',
+    materialized='ephemeral',
     unique_key='order_id',
-    incremental_strategy='merge'
+    
 ) }}
 
 SELECT

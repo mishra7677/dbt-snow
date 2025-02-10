@@ -1,7 +1,7 @@
 {{ config(
-    materialized='incremental',
+    materialized='ephemeral',
     unique_key='customer_id',
-    incremental_strategy='merge'
+    
 ) }}
     SELECT
         c.c_custkey AS customer_id,

@@ -1,20 +1,20 @@
-{{ config(
-    materialized='incremental', 
-    unique_key='part_id',
-    incremental_strategy='merge'
-) }}
+{{
+    config(
+        materialized="ephemeral", unique_key="part_id", incremental_strategy="merge"
+    )
+}}
 
-SELECT
-    p.p_partkey AS part_id,
-    p.p_name AS part_name,
-    p.p_mfgr AS manufacturer,
-    p.p_brand AS brand,
-    p.p_type AS part_type,
-    p.p_size AS size,
-    p.p_container AS container,
-    p.p_retailprice AS retail_price
-FROM {{ source('landing', 'PARTS') }} p
+select
+    p.p_partkey as part_id,
+    p.p_name as part_name,
+    p.p_mfgr as manufacturer,
+    p.p_brand as brand,
+    p.p_type as part_type,
+    p.p_size as size,
+    p.p_container as container,
+    p.p_retailprice as retail_price
+from {{ source("landing", "PART") }} p
 
 {% if is_incremental() %}
-WHERE p.p_partkey NOT IN (SELECT part_id FROM {{ this }})
+    where p.p_partkey not in (select part_id from {{ this }})
 {% endif %}

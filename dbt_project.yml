@@ -1,9 +1,9 @@
-name: 'my_new_project'
+name: 'dbt_snow_project'  
 version: '1.0.0'
 config-version: 2
 
 # Use the same profile name as set in dbt Cloud
-profile: 'default'  # dbt Cloud automatically manages this
+profile: 'default'  
 
 model-paths: ["models"]
 analysis-paths: ["analyses"]
@@ -18,6 +18,11 @@ clean-targets:
   - "dbt_packages"
 
 models:
-  my_new_project:
+  dbt_snow_project:
     example:
       +materialized: table
+    arc_model:  
+      dw_mart:  
+        +enabled: true
+      staging_area:
+        +enabled: true
